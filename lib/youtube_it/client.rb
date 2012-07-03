@@ -178,8 +178,8 @@ class YouTubeIt
       client.playlist(playlist_id, order_by)
     end
 
-    def playlists(user = nil)
-      client.playlists(user)
+    def playlists(user = nil, options={})
+      client.playlists(user, options)
     end
 
     def add_playlist(options)

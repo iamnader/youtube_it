@@ -306,8 +306,10 @@ class YouTubeIt
         return YouTubeIt::Parser::PlaylistFeedParser.new(response).parse
       end
 
-      def playlists(user)
+      def playlists(user, options)
         playlist_url = "/feeds/api/users/%s/playlists?v=2" % (user ? user : "default")
+        playlist_url << opts.collect { |k,p| [k,p].join '=' }.join('&')
+        
         response     = yt_session.get(playlist_url)
 
         return YouTubeIt::Parser::PlaylistsFeedParser.new(response).parse
